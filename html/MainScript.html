@@ -1,0 +1,237 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>MainScript</title><meta name="generator" content="MATLAB 9.9"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2020-12-05"><meta name="DC.source" content="MainScript.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">THIS PLOTS THE WHOLE GRAPH, IT IS RECOMMENDED NOT TO RUN THIS AND IT WILL REMAIN COMMENTED OUT UNLESS THE TA WISHES TO RUN THIS SECTION</a></li><li><a href="#2">This calculates the amount of times the general ECG structure repeats and the time length of the PR Interval</a></li><li><a href="#3">Plots a single ECG repetition</a></li><li><a href="#4">Plots the last few thousand points for each patient's ECG structure</a></li></ul></div><h2 id="1">THIS PLOTS THE WHOLE GRAPH, IT IS RECOMMENDED NOT TO RUN THIS AND IT WILL REMAIN COMMENTED OUT UNLESS THE TA WISHES TO RUN THIS SECTION</h2><pre class="codeinput"><span class="comment">%{
+</span><span class="comment">figure%New Figure
+</span><span class="comment">ECGPlotCall('ecg1.mat')%Calls the function which splits up the data into sets of 3000 points for the file
+</span><span class="comment">title("Patient One", 'FontName', 'Times New Roman');%Adds title in Times New Roman
+</span><span class="comment">xlabel("Time (s)", 'FontName', 'Times New Roman');%Adds x-axis title in Times New Roman
+</span><span class="comment">ylabel("Signal Voltage (mV)", 'FontName', 'Times New Roman');%Adds y-axis title in Times New Roman
+</span><span class="comment">textAdder('ecg1.mat')%Calls function that adds text to the end of the plot
+</span><span class="comment">
+</span><span class="comment">figure%New Figure
+</span><span class="comment">ECGPlotCall('ecg2.mat')%Calls the function which splits up the data into sets of 3000 points for the file
+</span><span class="comment">title("Patient Two", 'FontName', 'Times New Roman');%Adds title in Times New Roman
+</span><span class="comment">xlabel("Time (s)", 'FontName', 'Times New Roman');%Adds x-axis title in Times New Roman
+</span><span class="comment">ylabel("Signal Voltage (mV)", 'FontName', 'Times New Roman');%Adds y-axis title in Times New Roman
+</span><span class="comment">textAdder('ecg2.mat')%Calls function that adds text to the end of the plot
+</span><span class="comment">
+</span><span class="comment">figure%New Figure
+</span><span class="comment">ECGPlotCall('ecg3.mat')%Calls the function which splits up the data into sets of 3000 points for the file
+</span><span class="comment">title("Patient Three", 'FontName', 'Times New Roman');%Adds title in Times New Roman
+</span><span class="comment">xlabel("Time (s)", 'FontName', 'Times New Roman');%Adds x-axis title in Times New Roman
+</span><span class="comment">ylabel("Signal Voltage (mV)", 'FontName', 'Times New Roman');%Adds y-axis title in Times New Roman
+</span><span class="comment">textAdder('ecg3.mat')%Calls function that adds text to the end of the plot
+</span><span class="comment">%}</span>
+</pre><h2 id="2">This calculates the amount of times the general ECG structure repeats and the time length of the PR Interval</h2><pre class="codeinput">times1 = timeCollector(<span class="string">'ecg1.mat'</span>);<span class="comment">%Collects the times of a repeating point</span>
+ecg1Rate = heartRates(times1);<span class="comment">%Examines the amount of points (heartbeat) that repeat in 60 second intervals</span>
+PR1Rate = PRInterval(<span class="string">'ecg1.mat'</span>);<span class="comment">%Gets the approximated time of each PR Interval</span>
+PR1Average = averagePRInterval(PR1Rate);<span class="comment">%Calculates the average PR Interval time</span>
+
+times2 = timeCollector(<span class="string">'ecg2.mat'</span>);<span class="comment">%Collects the times of a repeating point</span>
+ecg2Rate = heartRates(times2);<span class="comment">%Examines the amount of points (heartbeat) that repeat in 60 second intervals</span>
+PR2Rate = PRInterval(<span class="string">'ecg2.mat'</span>);<span class="comment">%Gets the approximated time of each PR Interval</span>
+PR2Average = averagePRInterval(PR2Rate);<span class="comment">%Calculates the average PR Interval time</span>
+
+times3 = timeCollector(<span class="string">'ecg3.mat'</span>);<span class="comment">%Collects the times of a repeating point</span>
+ecg3Rate = heartRates(times3);<span class="comment">%Examines the amount of points (heartbeat) that repeat in 60 second intervals</span>
+PR3Rate = PRInterval(<span class="string">'ecg3.mat'</span>);<span class="comment">%Gets the approximated time of each PR Interval</span>
+PR3Average = averagePRInterval(PR3Rate);<span class="comment">%Calculates the average PR Interval time</span>
+</pre><h2 id="3">Plots a single ECG repetition</h2><pre class="codeinput">figure<span class="comment">%New Figure</span>
+Plot1(<span class="string">'ecg1.mat'</span>)<span class="comment">%Calls the function that plots a single repetition</span>
+title(<span class="string">"Patient One"</span>, <span class="string">'FontName'</span>, <span class="string">'Times New Roman'</span>);<span class="comment">%Adds title</span>
+xlabel(<span class="string">"Time (s)"</span>, <span class="string">'FontName'</span>, <span class="string">'Times New Roman'</span>);<span class="comment">%Adds x axis label</span>
+ylabel(<span class="string">"Signal Voltage (mV)"</span>, <span class="string">'FontName'</span>, <span class="string">'Times New Roman'</span>);<span class="comment">%Adds y axis label</span>
+
+figure<span class="comment">%New Figure</span>
+Plot1(<span class="string">'ecg2.mat'</span>)<span class="comment">%Calls the function that plots a single repetition</span>
+title(<span class="string">"Patient Two"</span>, <span class="string">'FontName'</span>, <span class="string">'Times New Roman'</span>);<span class="comment">%Adds title</span>
+xlabel(<span class="string">"Time (s)"</span>, <span class="string">'FontName'</span>, <span class="string">'Times New Roman'</span>);<span class="comment">%Adds x axis label</span>
+ylabel(<span class="string">"Signal Voltage (mV)"</span>, <span class="string">'FontName'</span>, <span class="string">'Times New Roman'</span>);<span class="comment">%Adds y axis label</span>
+
+figure<span class="comment">%New Figure</span>
+Plot1(<span class="string">'ecg3.mat'</span>)<span class="comment">%Calls the function that plots a single repetition</span>
+title(<span class="string">"Patient Three"</span>, <span class="string">'FontName'</span>, <span class="string">'Times New Roman'</span>);<span class="comment">%Adds title</span>
+xlabel(<span class="string">"Time (s)"</span>, <span class="string">'FontName'</span>, <span class="string">'Times New Roman'</span>);<span class="comment">%Adds x axis label</span>
+ylabel(<span class="string">"Signal Voltage (mV)"</span>, <span class="string">'FontName'</span>, <span class="string">'Times New Roman'</span>);<span class="comment">%Adds y axis label</span>
+</pre><img vspace="5" hspace="5" src="MainScript_01.png" alt=""> <img vspace="5" hspace="5" src="MainScript_02.png" alt=""> <img vspace="5" hspace="5" src="MainScript_03.png" alt=""> <h2 id="4">Plots the last few thousand points for each patient's ECG structure</h2><pre class="codeinput">figure <span class="comment">%New Figure</span>
+load(<span class="string">'ecg1.mat'</span>)<span class="comment">%Loads File</span>
+ECGplot(ecg,marker,time,30000,32838)<span class="comment">%Plots the last few thousand points</span>
+title(<span class="string">"Patient One"</span>, <span class="string">'FontName'</span>, <span class="string">'Times New Roman'</span>);<span class="comment">%Adds Title</span>
+xlabel(<span class="string">"Time (s)"</span>, <span class="string">'FontName'</span>, <span class="string">'Times New Roman'</span>);<span class="comment">%Adds x axis label</span>
+ylabel(<span class="string">"Signal Voltage (mV)"</span>, <span class="string">'FontName'</span>, <span class="string">'Times New Roman'</span>);<span class="comment">%Adds y axis label</span>
+textAdder(<span class="string">'ecg1.mat'</span>);<span class="comment">%Adds text to plot to label points</span>
+
+figure<span class="comment">%New Figure</span>
+load(<span class="string">'ecg2.mat'</span>)<span class="comment">%Loads File</span>
+ECGplot(ecg,marker,time,63000,65535)<span class="comment">%Plots the last few thousand points</span>
+title(<span class="string">"Patient Two"</span>, <span class="string">'FontName'</span>, <span class="string">'Times New Roman'</span>);<span class="comment">%Adds Title</span>
+xlabel(<span class="string">"Time (s)"</span>, <span class="string">'FontName'</span>, <span class="string">'Times New Roman'</span>);<span class="comment">%Adds x axis label</span>
+ylabel(<span class="string">"Signal Voltage (mV)"</span>, <span class="string">'FontName'</span>, <span class="string">'Times New Roman'</span>);<span class="comment">%Adds y axis label</span>
+textAdder(<span class="string">'ecg2.mat'</span>);<span class="comment">%Adds text to plot to label points</span>
+
+figure<span class="comment">%New Figure</span>
+load(<span class="string">'ecg3.mat'</span>)<span class="comment">%Loads File</span>
+ECGplot(ecg,marker,time,129000,131368)<span class="comment">%Plots the last few thousand points</span>
+title(<span class="string">"Patient Three"</span>, <span class="string">'FontName'</span>, <span class="string">'Times New Roman'</span>);<span class="comment">%Adds Title</span>
+xlabel(<span class="string">"Time (s)"</span>, <span class="string">'FontName'</span>, <span class="string">'Times New Roman'</span>);<span class="comment">%Adds x axis label</span>
+ylabel(<span class="string">"Signal Voltage (mV)"</span>, <span class="string">'FontName'</span>, <span class="string">'Times New Roman'</span>);<span class="comment">%Adds y axis label</span>
+textAdder(<span class="string">'ecg3.mat'</span>);<span class="comment">%Adds text to plot to label points</span>
+</pre><img vspace="5" hspace="5" src="MainScript_04.png" alt=""> <img vspace="5" hspace="5" src="MainScript_05.png" alt=""> <img vspace="5" hspace="5" src="MainScript_06.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% THIS PLOTS THE WHOLE GRAPH, IT IS RECOMMENDED NOT TO RUN THIS AND IT WILL REMAIN COMMENTED OUT UNLESS THE TA WISHES TO RUN THIS SECTION
+
+%{
+figure%New Figure
+ECGPlotCall('ecg1.mat')%Calls the function which splits up the data into sets of 3000 points for the file
+title("Patient One", 'FontName', 'Times New Roman');%Adds title in Times New Roman
+xlabel("Time (s)", 'FontName', 'Times New Roman');%Adds x-axis title in Times New Roman
+ylabel("Signal Voltage (mV)", 'FontName', 'Times New Roman');%Adds y-axis title in Times New Roman
+textAdder('ecg1.mat')%Calls function that adds text to the end of the plot
+
+figure%New Figure
+ECGPlotCall('ecg2.mat')%Calls the function which splits up the data into sets of 3000 points for the file
+title("Patient Two", 'FontName', 'Times New Roman');%Adds title in Times New Roman
+xlabel("Time (s)", 'FontName', 'Times New Roman');%Adds x-axis title in Times New Roman
+ylabel("Signal Voltage (mV)", 'FontName', 'Times New Roman');%Adds y-axis title in Times New Roman
+textAdder('ecg2.mat')%Calls function that adds text to the end of the plot
+
+figure%New Figure
+ECGPlotCall('ecg3.mat')%Calls the function which splits up the data into sets of 3000 points for the file
+title("Patient Three", 'FontName', 'Times New Roman');%Adds title in Times New Roman
+xlabel("Time (s)", 'FontName', 'Times New Roman');%Adds x-axis title in Times New Roman
+ylabel("Signal Voltage (mV)", 'FontName', 'Times New Roman');%Adds y-axis title in Times New Roman
+textAdder('ecg3.mat')%Calls function that adds text to the end of the plot
+%}
+
+%% This calculates the amount of times the general ECG structure repeats and the time length of the PR Interval
+
+times1 = timeCollector('ecg1.mat');%Collects the times of a repeating point
+ecg1Rate = heartRates(times1);%Examines the amount of points (heartbeat) that repeat in 60 second intervals
+PR1Rate = PRInterval('ecg1.mat');%Gets the approximated time of each PR Interval
+PR1Average = averagePRInterval(PR1Rate);%Calculates the average PR Interval time
+
+times2 = timeCollector('ecg2.mat');%Collects the times of a repeating point
+ecg2Rate = heartRates(times2);%Examines the amount of points (heartbeat) that repeat in 60 second intervals
+PR2Rate = PRInterval('ecg2.mat');%Gets the approximated time of each PR Interval
+PR2Average = averagePRInterval(PR2Rate);%Calculates the average PR Interval time
+ 
+times3 = timeCollector('ecg3.mat');%Collects the times of a repeating point
+ecg3Rate = heartRates(times3);%Examines the amount of points (heartbeat) that repeat in 60 second intervals
+PR3Rate = PRInterval('ecg3.mat');%Gets the approximated time of each PR Interval
+PR3Average = averagePRInterval(PR3Rate);%Calculates the average PR Interval time
+
+%% Plots a single ECG repetition
+
+figure%New Figure
+Plot1('ecg1.mat')%Calls the function that plots a single repetition
+title("Patient One", 'FontName', 'Times New Roman');%Adds title
+xlabel("Time (s)", 'FontName', 'Times New Roman');%Adds x axis label
+ylabel("Signal Voltage (mV)", 'FontName', 'Times New Roman');%Adds y axis label
+
+figure%New Figure
+Plot1('ecg2.mat')%Calls the function that plots a single repetition
+title("Patient Two", 'FontName', 'Times New Roman');%Adds title
+xlabel("Time (s)", 'FontName', 'Times New Roman');%Adds x axis label
+ylabel("Signal Voltage (mV)", 'FontName', 'Times New Roman');%Adds y axis label
+
+figure%New Figure
+Plot1('ecg3.mat')%Calls the function that plots a single repetition
+title("Patient Three", 'FontName', 'Times New Roman');%Adds title
+xlabel("Time (s)", 'FontName', 'Times New Roman');%Adds x axis label
+ylabel("Signal Voltage (mV)", 'FontName', 'Times New Roman');%Adds y axis label
+
+
+%% Plots the last few thousand points for each patient's ECG structure
+
+figure %New Figure
+load('ecg1.mat')%Loads File
+ECGplot(ecg,marker,time,30000,32838)%Plots the last few thousand points
+title("Patient One", 'FontName', 'Times New Roman');%Adds Title
+xlabel("Time (s)", 'FontName', 'Times New Roman');%Adds x axis label
+ylabel("Signal Voltage (mV)", 'FontName', 'Times New Roman');%Adds y axis label
+textAdder('ecg1.mat');%Adds text to plot to label points
+
+figure%New Figure
+load('ecg2.mat')%Loads File
+ECGplot(ecg,marker,time,63000,65535)%Plots the last few thousand points
+title("Patient Two", 'FontName', 'Times New Roman');%Adds Title
+xlabel("Time (s)", 'FontName', 'Times New Roman');%Adds x axis label
+ylabel("Signal Voltage (mV)", 'FontName', 'Times New Roman');%Adds y axis label
+textAdder('ecg2.mat');%Adds text to plot to label points
+
+figure%New Figure
+load('ecg3.mat')%Loads File
+ECGplot(ecg,marker,time,129000,131368)%Plots the last few thousand points
+title("Patient Three", 'FontName', 'Times New Roman');%Adds Title
+xlabel("Time (s)", 'FontName', 'Times New Roman');%Adds x axis label
+ylabel("Signal Voltage (mV)", 'FontName', 'Times New Roman');%Adds y axis label
+textAdder('ecg3.mat');%Adds text to plot to label points
+##### SOURCE END #####
+--></body></html>
